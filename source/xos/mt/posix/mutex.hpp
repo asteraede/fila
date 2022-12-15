@@ -28,7 +28,7 @@
 
 #if defined(XOS_MT_OS_POSIX_MUTEX_HPP)
 #include "xos/platform/os/posix/mutex.h"
-#else defined(XOS_MT_OS_POSIX_MUTEX_HPP)
+#else /// defined(XOS_MT_OS_POSIX_MUTEX_HPP)
 #if !defined(WINDOWS)
 #include <pthread.h>
 #include <time.h>

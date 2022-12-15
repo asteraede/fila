@@ -13,31 +13,41 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: main_opt.hpp
+///   File: main.hpp
 ///
 /// Author: $author$
 ///   Date: 9/3/2022, 12/14/2022
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
-#define XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
+#ifndef XOS_APP_CONSOLE_THREAD_MAIN_HPP
+#define XOS_APP_CONSOLE_THREAD_MAIN_HPP
 
-#include "xos/app/console/mt/fila/main.hpp"
+#include "xos/app/console/thread/main_opt.hpp"
+#include "xos/mt/apple/osx/mutex.hpp"
+#include "xos/mt/apple/osx/thread.hpp"
+#include "xos/mt/linux/mutex.hpp"
+#include "xos/mt/linux/thread.hpp"
+#include "xos/mt/posix/mutex.hpp"
+#include "xos/mt/posix/thread.hpp"
+#include "xos/mt/os/mutex.hpp"
+#include "xos/mt/os/thread.hpp"
+#include "xos/mt/thread.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
-namespace fila {
+namespace thread {
 
-/// class main_optt
+/// class maint
 template 
-<class TExtends = xos::app::console::mt::fila::maint<>, 
+<class TRan = ran, 
+ class TExtends = xos::app::console::thread::main_opt, 
  class TImplements = typename TExtends::implements>
 
-class exported main_optt: virtual public TImplements, public TExtends {
+class exported maint: virtual public TImplements, public TExtends {
 public:
     typedef TImplements implements;
     typedef TExtends extends;
-    typedef main_optt derives;
+    typedef maint derives;
 
     typedef typename extends::char_t char_t;
     typedef typename extends::end_char_t end_char_t;
@@ -48,12 +58,12 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    main_optt() {
+    maint() {
     }
-    virtual ~main_optt() {
+    virtual ~maint() {
     }
 private:
-    main_optt(const main_optt& copy) {
+    maint(const maint& copy) {
         throw exception(exception_unexpected);
     }
 
@@ -62,13 +72,18 @@ protected:
     typedef typename extends::out_writer_t out_writer_t;
     typedef typename extends::err_writer_t err_writer_t;
 
-protected:
-}; /// class main_optt
-typedef main_optt<> main_opt;
+    virtual int os_run(int argc, char_t** argv, char_t** env) {
+        int err = this->template run< ::xos::mt::os::mutex, ::xos::mt::os::thread >();
+        return err;
+    }
 
-} /// namespace fila
+protected:
+}; /// class maint
+typedef maint<> main;
+
+} /// namespace thread
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_THREAD_MAIN_HPP

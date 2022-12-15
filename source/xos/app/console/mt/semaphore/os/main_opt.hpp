@@ -16,21 +16,23 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 9/3/2022, 12/14/2022
+///   Date: 12/15/2022
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
-#define XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
+#ifndef XOS_APP_CONSOLE_MT_FILA_OS_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_MT_FILA_OS_MAIN_OPT_HPP
 
-#include "xos/app/console/mt/fila/main.hpp"
+#include "xos/app/console/mt/os/main.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
-namespace fila {
+namespace mt {
+namespace semaphore {
+namespace os {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::mt::fila::maint<>, 
+<class TExtends = xos::app::console::mt::os::maint<>, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
@@ -66,9 +68,11 @@ protected:
 }; /// class main_optt
 typedef main_optt<> main_opt;
 
-} /// namespace fila
+} /// namespace os
+} /// namespace semaphore
+} /// namespace mt
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_FILA_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_MT_FILA_OS_MAIN_OPT_HPP
