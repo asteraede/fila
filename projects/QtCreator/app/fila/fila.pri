@@ -55,6 +55,21 @@ XOS_CONSOLE_MAIN_MAIN \
 # fila_exe HEADERS
 #
 fila_exe_HEADERS += \
+$${NADIR_SRC}/xos/app/console/os/main_opt.hpp \
+$${NADIR_SRC}/xos/app/console/os/main.hpp \
+\
+$${FILA_SRC}/xos/app/console/mt/main_opt.hpp \
+$${FILA_SRC}/xos/app/console/mt/main.hpp \
+\
+$${FILA_SRC}/xos/app/console/mt/os/main_opt.hpp \
+$${FILA_SRC}/xos/app/console/mt/os/main.hpp \
+\
+$${FILA_SRC}/xos/app/console/mt/fila/main_opt.hpp \
+$${FILA_SRC}/xos/app/console/mt/fila/main.hpp \
+\
+$${FILA_SRC}/xos/app/console/mt/fila/os/main_opt.hpp \
+$${FILA_SRC}/xos/app/console/mt/fila/os/main.hpp \
+\
 $${FILA_SRC}/xos/app/console/fila/main_opt.hpp \
 $${FILA_SRC}/xos/app/console/fila/main.hpp \
 
