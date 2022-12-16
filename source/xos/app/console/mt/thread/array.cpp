@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 /// Copyright (c) 1988-2022 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
@@ -13,35 +13,31 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: main.cpp
+///   File: array.cpp
 ///
 /// Author: $author$
-///   Date: 12/15/2022
-///////////////////////////////////////////////////////////////////////
-#include "xos/app/console/thread/main.hpp"
+///   Date: 12/16/2022
+//////////////////////////////////////////////////////////////////////////
+#include "xos/app/console/mt/thread/array.hpp"
 
-#if defined(XOS_CONSOLE_MAIN_MAIN)
-#include "xos/console/main_main.cpp"
-#if !defined(XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE)
-#define XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_THREAD_MAIN_NSTANCE)
-#endif /// defined(XOS_CONSOLE_MAIN_MAIN)
-
-#if !defined(XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE)
-///#define XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_THREAD_MAIN_NSTANCE)
+#ifndef XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE
+/// #define XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE 
+#else /// ndef XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE 
+#endif /// ndef XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE 
 
 namespace xos {
 namespace app {
 namespace console {
+namespace mt {
 namespace thread {
 
-/// class main
-#if defined(XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE)
-static main the_main;
-#endif /// defined(XOS_APP_CONSOLE_THREAD_MAIN_INSTANCE)
+/// class arrayt
+#ifdef XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE
+static array the_array;
+#endif /// def XOS_APP_CONSOLE_MT_THREAD_ARRAY_INSTANCE 
 
-} /// namespace thread
-} /// namespace console
-} /// namespace app
-} /// namespace xos
+} /// namespace thread 
+} /// namespace mt 
+} /// namespace console 
+} /// namespace app 
+} /// namespace xos 

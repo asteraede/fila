@@ -16,7 +16,7 @@
 ///   File: main.cpp
 ///
 /// Author: $author$
-///   Date: 12/14/2022
+///   Date: 2/15/2022
 ///////////////////////////////////////////////////////////////////////
 #include "xos/app/console/mt/thread/os/main.hpp"
 

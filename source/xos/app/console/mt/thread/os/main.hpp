@@ -16,7 +16,7 @@
 ///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 12/14/2022
+///   Date: 2/15/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_MT_THREAD_OS_MAIN_HPP
 #define XOS_APP_CONSOLE_MT_THREAD_OS_MAIN_HPP

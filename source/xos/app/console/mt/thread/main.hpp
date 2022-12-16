@@ -16,12 +16,13 @@
 ///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 12/14/2022
+///   Date: 2/15/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_MT_THREAD_MAIN_HPP
 #define XOS_APP_CONSOLE_MT_THREAD_MAIN_HPP
 
 #include "xos/app/console/mt/thread/main_opt.hpp"
+#include "xos/app/console/mt/thread/array.hpp"
 #include "xos/mt/thread.hpp"
 
 namespace xos {
@@ -129,22 +130,42 @@ protected:
     int run() {
         int err = 0;
         mseconds_t timeout = 0;
+        size_t nthreads = this->threads();
         bool untimed = this->infinite_timeout(timeout);
-        this->outlln(__LOCATION__, "try {...", NULL);
-        try {
-            this->outlln(__LOCATION__, "TMutex mutex...", NULL);
-            TMutex mutex;
-            locked_ = &mutex;
-            this->outlln(__LOCATION__, "TThread thread...", NULL);
-            TThread thread(*this);
-            err = run(thread);
-            this->outlln(__LOCATION__, "...} try", NULL);
-        } catch (const exception& e) {
-            this->outlln(__LOCATION__, "...catch (const exception& e.status = \"", e.status_to_chars(), "\")", NULL);
-            err = 1;
-        } catch (...) {
-            this->outlln(__LOCATION__, "...catch (...)", NULL);
-            err = 1;
+        if ((1 < nthreads)) {
+            this->outlln(__LOCATION__, "try {...", NULL);
+            try {
+                this->outlln(__LOCATION__, "TMutex mutex...", NULL);
+                TMutex mutex;
+                locked_ = &mutex;
+                this->outlln(__LOCATION__, "TThread thread...", NULL);
+                thread::arrayt<TThread> threads(nthreads, *this);
+                err = run(threads);
+                this->outlln(__LOCATION__, "...} try", NULL);
+            } catch (const exception& e) {
+                this->outlln(__LOCATION__, "...catch (const exception& e.status = \"", e.status_to_chars(), "\")", NULL);
+                err = 1;
+            } catch (...) {
+                this->outlln(__LOCATION__, "...catch (...)", NULL);
+                err = 1;
+            }
+        } else {
+            this->outlln(__LOCATION__, "try {...", NULL);
+            try {
+                this->outlln(__LOCATION__, "TMutex mutex...", NULL);
+                TMutex mutex;
+                locked_ = &mutex;
+                this->outlln(__LOCATION__, "TThread thread...", NULL);
+                TThread thread(*this);
+                err = run(thread);
+                this->outlln(__LOCATION__, "...} try", NULL);
+            } catch (const exception& e) {
+                this->outlln(__LOCATION__, "...catch (const exception& e.status = \"", e.status_to_chars(), "\")", NULL);
+                err = 1;
+            } catch (...) {
+                this->outlln(__LOCATION__, "...catch (...)", NULL);
+                err = 1;
+            }
         }
         locked_ = 0;
         return err;

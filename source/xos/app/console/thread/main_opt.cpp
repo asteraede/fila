@@ -16,7 +16,7 @@
 ///   File: main_opt.cpp
 ///
 /// Author: $author$
-///   Date: 9/3/2022
+///   Date: 12/15/2022
 ///////////////////////////////////////////////////////////////////////
 #include "xos/app/console/thread/main_opt.hpp"
 
